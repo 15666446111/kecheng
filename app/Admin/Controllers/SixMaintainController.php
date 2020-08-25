@@ -2,15 +2,13 @@
 
 namespace App\Admin\Controllers;
 
-use App\SequentialMaintain;
+use App\SixMaintain;
 use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Show;
 
-use Encore\Admin\Layout\Content;
-
-class SequentialMaintainController extends AdminController
+class SixMaintainController extends AdminController
 {
     /**
      * Title for current resource.
@@ -26,7 +24,7 @@ class SequentialMaintainController extends AdminController
      */
     protected function grid()
     {
-        $grid = new Grid(new SequentialMaintain());
+        $grid = new Grid(new SixMaintain());
 
         $grid->column('id', __('索引'));
         
@@ -53,7 +51,7 @@ class SequentialMaintainController extends AdminController
      */
     protected function detail($id)
     {
-        $show = new Show(SequentialMaintain::findOrFail($id));
+        $show = new Show(SixMaintain::findOrFail($id));
 
         $show->field('title', __('章节标题'));
 
@@ -95,11 +93,11 @@ class SequentialMaintainController extends AdminController
      */
     protected function form()
     {
-        $form = new Form(new SequentialMaintain());
+        $form = new Form(new SixMaintain());
 
         $form->text('title', __('章节标题'));
 
-        $form->select('exercise_id', __('顺序练习'))->options(\App\SequentialExercise::pluck('title', 'id')->toArray());
+        $form->select('exercise_id', __('顺序练习'))->options(\App\SixExercise::pluck('title', 'id')->toArray());
 
         $form->switch('open', __('状态'))->default(1);
 

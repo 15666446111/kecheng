@@ -49,6 +49,16 @@ Route::group([
      */
     $router->resource('sequential-exercises', SequentialExerciseController::class);         // 顺序练习 地区 车型
     $router->resource('sequential-maintains', SequentialMaintainController::class);         // 顺序练习 章节列表
+    $router->resource('sequential-questions', SequentialQuestionController::class);         // 顺序练习。题库列表
+
+    /**
+     * 保过600题目
+     */
+    $router->resource('six-exercises', SixExerciseController::class);               // 保过600题  地区车型
+    $router->resource('six-maintains', SixMaintainController::class);               // 保过600题  章节列表
+    $router->resource('six-questions', SixQuestionController::class);               // 保过600题  问题列表
+
+
 
     // 车型管理
     $router->resource('cars', CarController::class);

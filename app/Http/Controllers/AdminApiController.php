@@ -24,4 +24,16 @@ class AdminApiController extends Controller
     {
         return \App\City::where('province_id', $request->get('q'))->get(['code as id', 'name as text'])->toArray();
     }
+
+    /** 后台联动选择顺序练习的车型与章节**/
+    public function getMaintain(Request $request)
+    {
+        return \App\SequentialMaintain::where('exercise_id', $request->get('q'))->get(['id', 'title as text'])->toArray();
+    }
+
+    /** 后台联动选择保过600题的车型与章节**/
+    public function getMaintainSix(Request $request)
+    {
+        return \App\SixMaintain::where('exercise_id', $request->get('q'))->get(['id', 'title as text'])->toArray();
+    }
 }

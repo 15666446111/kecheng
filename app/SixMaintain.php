@@ -4,10 +4,8 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class SequentialMaintain extends Model
+class SixMaintain extends Model
 {
-
-    
     /**
      * @Author    Pudding
      * @DateTime  2020-08-18
@@ -18,7 +16,7 @@ class SequentialMaintain extends Model
      */
     public function exercises()
     {
-    	return $this->belongsTo('App\SequentialExercise', 'exercise_id', 'id');
+    	return $this->belongsTo('App\SixExercise', 'exercise_id', 'id');
     }
 
 
@@ -35,9 +33,6 @@ class SequentialMaintain extends Model
      */
     public function questions()
     {
-        return $this->hasMany('App\SequentialQuestion', 'maintain_id', 'id');
+        return $this->hasMany('App\SixQuestion', 'maintain_id', 'id');
     }
-
-
-
 }

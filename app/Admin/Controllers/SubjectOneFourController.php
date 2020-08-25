@@ -10,6 +10,8 @@ use Encore\Admin\Show;
 
 use Encore\Admin\Widgets\Table;
 
+use App\Admin\Actions\Question\SyncSequention;      // 同步顺序练习
+use App\Admin\Actions\Question\SyncSix;             // 同步至保过600题
 class SubjectOneFourController extends AdminController
 {
     /**
@@ -58,6 +60,11 @@ class SubjectOneFourController extends AdminController
         $grid->column('open', __('状态'))->switch();
         $grid->column('created_at', __('创建时间'));
 
+
+        $grid->tools(function (Grid\Tools $tools) {
+            $tools->append(new SyncSequention());
+            $tools->append(new SyncSix());
+        });
 
 
         $grid->filter(function($filter){

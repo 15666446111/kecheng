@@ -67,9 +67,14 @@ Route::get('/video/{id}', 'VideoController@video');
 
 
 /** 后台使用。联动选择所属章节 **/
-Route::get('/getSection', 'AdminApiController@getSection');
-Route::get('/getSectionSec', 'AdminApiController@getSectionSec');
+Route::get('/getSection', 		'AdminApiController@getSection');
+Route::get('/getSectionSec', 	'AdminApiController@getSectionSec');
 
+/** 后台使用 联动选择顺序练习的车型与章节  **/
+Route::get('/getMaintains', 	'AdminApiController@getMaintain');
+
+/** 后台使用 联动选择保过600题的车型与章节  **/
+Route::get('/getMaintainsSix', 	'AdminApiController@getMaintainSix');
 
 /** 设置城市和车型  **/
 Route::post('/setCity', 'SetController@setCity');

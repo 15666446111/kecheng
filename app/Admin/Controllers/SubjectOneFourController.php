@@ -63,7 +63,7 @@ class SubjectOneFourController extends AdminController
         $grid->column('analysis', __('解析'))->limit(30);
         $grid->column('jiqiao', __('技巧'))->limit(30);
 
-        $grid->column('sort', __('排序'))->label();
+        $grid->column('sort', __('排序'))->label()->sortable();
         $grid->column('open', __('状态'))->switch();
         $grid->column('created_at', __('创建时间'));
 

@@ -30,6 +30,14 @@ Route::middleware(['checkLogin', 'beforeInit'])->group(function () {
 
 
 
+
+	Route::get('/sequence/plain/{sub}', 	'PlainController@subject');					// 科目一四 顺序练习 详情页面
+	Route::get('/sequence/practice/{id}', 	'PlainController@practice');				// 科目一四 顺序练习 总练习
+	Route::get('/sequence/chapter/{id}', 	'PlainController@subject');					// 科目一四 顺序练习 总练习
+
+
+
+	Route::get('/super/{sub}', 				'SuperController@index');					// 超级攻略 - 章节列表
 });
 
 
@@ -46,12 +54,6 @@ Route::get('/CarMaint', 'MaintController@index')->name('qcby');
 Route::get('/CarSecurity', 'MaintController@safeDriving')->name('aqjs');
 
 
-/**
- * @version [<vector>] [< 科目一四 顺序练习 >]
- */
-Route::get('/subject/plain/{sub}', 'PlainController@subject');
-
-
 
 /**
  * @author pudding
@@ -63,6 +65,8 @@ Route::get('/sub2', 'SubjectController@sub2');
 
 // 加密视频播放地址 
 Route::get('/video/{id}', 'VideoController@video');
+
+
 
 
 

@@ -59,6 +59,13 @@ Route::group([
     $router->resource('six-questions', SixQuestionController::class);               // 保过600题  问题列表
 
 
+    /**
+     * 超级攻略
+     */
+    $router->resource('super-strategies', SuperStrategyController::class);          // 超级攻略
+    $router->resource('super-maintains', SuperMaintainsController::class);          // 章节列表
+    $router->resource('super-courses', SuperCourseController::class);               // 课件列表
+
 
     // 车型管理
     $router->resource('cars', CarController::class);

@@ -13,14 +13,28 @@ class SubjectOneFour extends Model
 
     /**
      * @Author    Pudding
-     * @DateTime  2020-08-03
+     * @DateTime  2020-08-28
      * @copyright [copyright]
      * @license   [license]
-     * @version   [ 关联车型 ]
-     * @return    [type]      [description]
+     * @version   [ 车型获取器 ]
+     * @param     [type]      $value [description]
+     * @return    [type]             [description]
      */
-    public function cars()
+    public function getCarAttribute($value)
     {
-        return $this->belongsTo('\App\Car', 'car', 'id');
+        return explode(',', $value);
+    }
+
+    /**
+     * @Author    Pudding
+     * @DateTime  2020-08-28
+     * @copyright [copyright]
+     * @license   [license]
+     * @version   [ 车型设置器 ]
+     * @param     [type]      $value [description]
+     */
+    public function setCarAttribute($value)
+    {
+        $this->attributes['car'] = implode(',', $value);
     }
 }

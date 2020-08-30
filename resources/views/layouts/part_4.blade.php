@@ -6,7 +6,7 @@
             </div>
             <div class="mui-row ah">
                 <a href="/appointment">预约考试</a>
-                <a href="/index/course/cont/id/40.html">超级攻略</a>
+                <a href="/super/4">超级攻略</a>
                 <a href="/appointment">成绩查询</a>
             </div>
         </div>
@@ -32,7 +32,7 @@
                 </div>
                 
                 <div class="cc">
-                    <a href="/subject/plain/4">
+                    <a href="/sequence/plain/4">
                         <div class="cc1"></div>
                         <div class="cc2"></div>
                         <div class="cc3"></div>

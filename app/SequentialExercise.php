@@ -47,7 +47,7 @@ class SequentialExercise extends Model
      */
     public function maintains()
     {
-        return $this->hasMany('App\SequentialMaintain', 'exercise_id', 'id');
+        return $this->hasMany('App\SequentialMaintain', 'exercise_id', 'id')->orderBy('sort', 'desc');
     }
 
 }

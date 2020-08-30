@@ -26,6 +26,8 @@ body {
 	outline: 0!important
 }
 
+
+
 .weui-tab{position: none; }
 .weui-tabbar{position: fixed!important;}
 .weui-tabbar__icon{width: 1.2rem; height: 1.2rem}
@@ -285,3 +287,57 @@ body {
 .yy_cont{text-indent: .4rem; line-height: 1.8; margin-bottom: 24px; font-size: .7rem}
 .yy_num{ float: left; border: 1px solid #007aff; border-radius: 50%; width: 24px; height: 24px; text-align: center; line-height: 24px; color: #007aff; text-indent: 0;}
 .yy_cont img{margin-top: .4rem; width: 100%}
+
+
+/**
+ * @version 顺序练习
+ */
+.sxlx_rows{padding: .6rem .6rem;}
+.sxlx{font-size: .7rem; color: #007aff;}
+.ljxx{font-size: .6rem; color: #77bb44;}
+.sxlx_con .weui-navbar{ background: white; }
+.sxlx_con .weui-navbar__item.weui-bar__item--on{border-bottom:none!important; border-top: 1px solid #BA2636; color: #BA2636!important; }
+
+
+/**
+ * @version 答题页面
+ */
+.aui-bar { position: relative; top: 0; right: 0; left: 0; z-index: 10; width: 100%; min-height: 2.25rem; font-size: 0.9rem; text-align: center; display: table; }
+.aui-bar-tab { position: fixed; top: auto; bottom: 0; table-layout: fixed; background-color: #f4fbff; color: #757575; }
+.aui-bar-tab .aui-bar-tab-item { display: table-cell; position: relative; width: 1%; height: 2.5rem; text-align: center; vertical-align: middle; }
+.aui-bar-tab .aui-bar-tab-label { display: block; font-size: 0.6rem; position: relative; }
+.aui-bar-tab .aui-active { color: #039be5; }
+
+.swiper-slide-active{margin: .8rem;}
+.swiper-slide-active .title{font-size: .85rem}
+.swiper-slide-active .answer{font-size: .7rem; margin-top: .3rem; margin-bottom: .3rem; line-height: 2; }
+.alert-info { color: #31708f; background-color: #d9edf7; border-color: #bce8f1; }
+.st_answer_list { background: #f4fbff; padding: 10px; color: #31708f; margin-top: 10px; }
+.st_answer_list label { margin-right: 6px; }
+
+.st_answer_list label { display: inline-block; max-width: 100%; margin-bottom: 5px; font-weight: 700; }
+.st_answer_list input[type=checkbox], input[type=radio] { margin: 4px 0 0; margin-top: 1px \9; line-height: normal; }
+.st_answer_list input[type=checkbox], input[type=radio] { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; padding: 0; }
+.aui-radio, .aui-checkbox { vertical-align: top; }
+.aui-radio, .aui-checkbox { width: 1.2rem; height: 1.2rem; background-color: #ffffff; border: solid 1px #dddddd; -webkit-border-radius: 0.6rem;
+    border-radius: 0.6rem; font-size: 0.8rem; margin: 0; padding: 0; position: relative; display: inline-block; vertical-align: top;
+    cursor: default; -webkit-appearance: none; -webkit-user-select: none; user-select: none; -webkit-transition: background-color ease 0.1s;
+    transition: background-color ease 0.1s;
+}
+
+.st_answer_list input[type=radio]:focus { outline: thin dotted; outline: 5px auto -webkit-focus-ring-color; outline-offset: -2px; }
+.aui-radio:checked, .aui-radio.aui-checked, .aui-checkbox:checked, .aui-checkbox.aui-checked {
+    background-color: #03a9f4; border: solid 1px #03a9f4; text-align: center; background-clip: padding-box;
+}
+.aui-radio:checked:before, .aui-radio.aui-checked:before, .aui-checkbox:checked:before, .aui-checkbox.aui-checked:before, .aui-radio:checked:after, .aui-radio.aui-checked:after, .aui-checkbox:checked:after, .aui-checkbox.aui-checked:after {
+    content: ''; width: 0.5rem; height: 0.3rem; position: absolute; top: 50%; left: 50%; margin-left: -0.25rem; margin-top: -0.25rem; background: transparent; border: 1px solid #ffffff; border-top: none; border-right: none; z-index: 2; -webkit-border-radius: 0; border-radius: 0; -webkit-transform: rotate(-45deg); transform: rotate(-45deg);
+}
+
+
+
+
+
+
+
+
+

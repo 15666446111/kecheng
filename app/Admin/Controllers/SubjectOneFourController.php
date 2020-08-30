@@ -12,6 +12,9 @@ use Encore\Admin\Widgets\Table;
 
 use App\Admin\Actions\Question\SyncSequention;      // 同步顺序练习
 use App\Admin\Actions\Question\SyncSix;             // 同步至保过600题
+
+use App\Admin\Actions\Change\ChangeCars;            // 更新车型
+use App\Admin\Actions\Change\ChangeSub;             // 更新科目
 class SubjectOneFourController extends AdminController
 {
     /**
@@ -36,7 +39,11 @@ class SubjectOneFourController extends AdminController
             return strip_tags($title);
         })->limit(30)->help('这一列是问题的题干');
 
-        $grid->column('cars.title', __('车型'));
+        $grid->column('car', __('车型'))->display(function($tags) {
+            $tags = \App\Car::whereIn('id', $tags)->pluck('title')->toArray();
+            $str  = implode(" | ", $tags);
+            return  $str;
+        });
 
         $grid->column('type', __('题型'))->using([ '1' => '单选', '2' => '多选', '3' => '判断'])
                 ->dot([ 1 => 'danger', 2 => 'success', '3' => 'primary' ], 'default');
@@ -64,6 +71,8 @@ class SubjectOneFourController extends AdminController
         $grid->tools(function (Grid\Tools $tools) {
             $tools->append(new SyncSequention());
             $tools->append(new SyncSix());
+            $tools->append(new ChangeCars());   // 更新车型
+            $tools->append(new ChangeSub());    // 更新科目
         });
 
 
@@ -76,7 +85,7 @@ class SubjectOneFourController extends AdminController
             });
 
             $filter->column(1/4, function ($filter) {
-                $filter->equal('car', '车型')->select(\App\Car::pluck('title', 'id')->toArray());
+                $filter->like('car', '车型')->select(\App\Car::pluck('title', 'id')->toArray());
             });
 
             $filter->column(1/4, function ($filter) {

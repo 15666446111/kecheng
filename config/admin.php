@@ -159,7 +159,7 @@ return [
         // Image and file upload path under the disk above.
         'directory' => [
             'image' => 'images|qcby|qcby/images｜sxlx|sxlx/images',
-            'file'  => 'files|qcby|qcby/video',
+            'file'  => 'files|qcby|qcby/video|cjgl|cjgl/media',
         ],
     ],
 

@@ -40,6 +40,8 @@ class MaintainController extends AdminController
 
         $grid->column('factorys', __('收藏人数'))->label();
 
+        $grid->column('sort', __('排序'))->label()->sortable();
+
         $grid->column('created_at', __('创建时间'));
 
         return $grid;

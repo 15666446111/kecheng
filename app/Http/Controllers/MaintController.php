@@ -10,7 +10,7 @@ class MaintController extends Controller
     public function index(Request $request)
     {
     	// 查询出所有章
-    	$list = \App\ChapterMaintain::where('chapter_open', '1')->orderBy('chapter_sort', 'desc')->get();
+    	$list = \App\ChapterMaintain::where('chapter_open', '1')->orderBy('chapter_sort', 'asc')->get();
 
     	return view('maint', compact('list'));
     }
@@ -20,7 +20,7 @@ class MaintController extends Controller
     public function safeDriving(Request $request)
     {
     	// 查询出所有章
-    	$list = \App\ChapterSecurity::where('chapter_open', '1')->orderBy('chapter_sort', 'desc')->get();
+    	$list = \App\ChapterSecurity::where('chapter_open', '1')->orderBy('chapter_sort', 'asc')->get();
 
     	return view('security', compact('list'));	
     }

@@ -35,6 +35,6 @@ class SubjectOneFour extends Model
      */
     public function setCarAttribute($value)
     {
-        $this->attributes['car'] = implode(',', $value);
+        $this->attributes['car'] = is_array($value) ? implode(',', $value) : $value;
     }
 }

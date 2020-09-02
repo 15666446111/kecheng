@@ -47,14 +47,19 @@
                         <div class="weui-panel__hd">{{ $sec->section_title }}</div>
                         @foreach($sec->maints as $l)
                             @if($l->active)
-                            <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg">
-                                <div class="weui-media-box__hd">
-                                    <img class="weui-media-box__thumb" src="{{ config('base.oss_read_path') . $l->thumb }}">
+                                <div class="weui-cell sxlx_rows" style="padding-left: 1rem">
+                                    <div class="weui-cell__bd sxlx">
+                                        @if(in_array(substr(strrchr($l->media, '.'), 1), ['mp4', 'mp3', 'flv', 'flash']))
+                                        <i class="fa fa-video-camera" aria-hidden="true"></i>
+                                        @elseif(in_array(substr(strrchr($l->media, '.'), 1), ['csv', 'pdf', 'xls', 'xlsx']))
+                                        <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+                                        @else
+                                        <i class="fa fa-file" aria-hidden="true"></i>
+                                        @endif
+                                        {{ $l->title }} 
+                                    </div>
+                                    <div class="weui-cell__ft ljxx">立即学习</div>
                                 </div>
-                                <div class="weui-media-box__bd">
-                                    <h4 class="weui-media-box__title">{{ $l->title }}</h4>
-                                </div>
-                            </a>
                             @endif
                         @endforeach
                     @endif 

@@ -29,6 +29,6 @@ class SuperMaintains extends Model
      */
     public function courses()
     {
-        return $this->hasMany('App\SuperCourse', 'maintains_id', 'id')->orderBy('sort', 'desc');
+        return $this->hasMany('App\SuperCourse', 'maintains_id', 'id')->orderBy('sort', 'asc');
     }
 }

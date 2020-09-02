@@ -10,6 +10,8 @@ use Encore\Admin\Show;
 
 use Encore\Admin\Widgets\Table;
 
+use App\Admin\Actions\Import\ImportSubject;         // 导入题库
+
 use App\Admin\Actions\Question\SyncSequention;      // 同步顺序练习
 use App\Admin\Actions\Question\SyncSix;             // 同步至保过600题
 
@@ -69,8 +71,11 @@ class SubjectOneFourController extends AdminController
 
 
         $grid->tools(function (Grid\Tools $tools) {
-            $tools->append(new SyncSequention());
-            $tools->append(new SyncSix());
+
+            $tools->append(new ImportSubject());    // 导入题库
+
+            $tools->append(new SyncSequention()); // 更新顺序练习
+            $tools->append(new SyncSix());      // 保过600题
             $tools->append(new ChangeCars());   // 更新车型
             $tools->append(new ChangeSub());    // 更新科目
         });
@@ -143,24 +148,35 @@ class SubjectOneFourController extends AdminController
     {
         $form = new Form(new SubjectOneFour());
 
-        $form->text('title', __('Title'));
-        $form->switch('car', __('Car'))->default(1);
-        $form->switch('type', __('Type'))->default(1);
-        $form->number('category', __('Category'))->default(1);
-        $form->text('option_a', __('Option a'));
-        $form->text('option_b', __('Option b'));
-        $form->text('option_c', __('Option c'));
-        $form->text('option_d', __('Option d'));
-        $form->text('answer', __('Answer'))->default('A');
-        $form->textarea('analysis', __('Analysis'));
-        $form->textarea('jiqiao', __('Jiqiao'));
-        $form->text('analysis_video', __('Analysis video'));
-        $form->text('analysis_audio', __('Analysis audio'));
-        $form->text('analysis_image', __('Analysis image'));
-        $form->number('sort', __('Sort'))->default(1);
-        $form->switch('open', __('Open'))->default(1);
-        $form->switch('subject', __('Subject'))->default(1);
+        $form->text('title', __('题干'));
 
+        $form->image('title_pic', __('题干图片'))->move('subject14/images')->uniqueName();
+
+        $form->checkbox('car', __('车型'))->options(\App\Car::pluck('title', 'id'));
+
+        $form->select('type', __('题型'))->options([1=>'单选', 2=>'多选', 3=>'判断']);
+
+        $form->select('subject', __('科目'))->options([1=> '科目一', 4=> '科目四']);
+        //$form->number('category', __('Category'))->default(1);
+
+        $form->number('sort', __('排序权重'))->default(1);
+
+        $form->switch('open', __('状态'))->default(1);
+
+        $form->text('option_a', __('答案A'));
+        $form->text('option_b', __('答案B'));
+        $form->text('option_c', __('答案C'));
+        $form->text('option_d', __('答案D'));
+
+        $form->text('answer', __('答案'))->default('A');
+
+        $form->textarea('analysis', __('解析'));
+        $form->textarea('jiqiao', __('技巧'));
+
+        $form->text('analysis_video', __('视频解析地址'));
+        $form->text('analysis_audio', __('音频解析地址'));
+        $form->text('analysis_image', __('帮助图片'));
+    
         return $form;
     }
 }

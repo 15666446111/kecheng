@@ -9,7 +9,7 @@ class SectionSecurity extends Model
     /** 关联课程 **/
     public function maints()
     {
-    	return $this->hasMany('App\Security', 'section_id', 'id');
+    	return $this->hasMany('App\Security', 'section_id', 'id')->orderBy('sort', 'asc');
     }
 
     /** 关联节 **/

@@ -30,9 +30,9 @@ class UploadVideo
     {
     	$this->callback = config('aliyun.onDemand.callback');
 
-        $this->accessKeyId = 'LTAI4FzahVitnTSoJ7LAxcd7';
+        $this->accessKeyId = env('ALI_VIDEO_ACCESS_ID');
 
-        $this->accessKeySecret = 'xWyej4tk9ScvJ6RZMsvv1y0369m3gl';
+        $this->accessKeySecret = env('ALI_VIDEO_ACCESS_KEY');
 
         $this->initVodClient();
     }

@@ -61,7 +61,7 @@
 
                             @foreach($cp->courses as $course)
                                 <div class="weui-cell sxlx_rows" style="padding-left: 1rem">
-                                    <div class="weui-cell__bd sxlx">
+                                    <div class="weui-cell__bd ljxx" data-url="{{ $course->media }}">
                                         @if(in_array(substr(strrchr($course->media, '.'), 1), ['mp4', 'mp3', 'flv', 'flash']))
                                         <i class="fa fa-video-camera" aria-hidden="true"></i>
                                         @elseif(in_array(substr(strrchr($course->media, '.'), 1), ['csv', 'pdf', 'xls', 'xlsx']))
@@ -71,7 +71,7 @@
                                         @endif
                                         {{ $course->title }} 
                                     </div>
-                                    <div class="weui-cell__ft ljxx">立即学习</div>
+                                    <div class="weui-cell__ft ljxx" data-url="{{ $course->media }}">立即学习</div>
                                 </div>
                             @endforeach
 
@@ -88,30 +88,27 @@
         </div>
 
     </div>
-
-
-
-
-    <div class="weui-panel weui-panel_access">
-        <div class="weui-panel__bd">
-            @foreach($info->maintains as $cp)
-                @if($cp->open)
-                
-
-
-                @endif
-            @endforeach
-        </div>
-    </div>
-
-
-
     @include('layouts.foot_nav', ['nav' => 'home'])
-
 </div>
+
+<div class="pdf_body">
+    <iframe class="pdf_iframe" src=""></iframe>
+</div>
+
 @endsection
 
 
 @section('scripts')
+    <!-- pdf jquery Javascript-->
+    <script src="{{ asset('js/jquery.media.js') }}?time={{ time() }}"></script>
 
+    <script type="text/javascript">
+        $(".ljxx").click(function(){
+            var show = $(".pdf_body").css('display');
+            if(show == "none") $(".pdf_body").css('display', 'block');
+            var url = "{{ config('base.oss_read_path') }}"+$(this).data('url');
+            $(".pdf_iframe").attr('src', url);
+            $('.pdf_body').media();
+        })
+    </script>
 @endsection

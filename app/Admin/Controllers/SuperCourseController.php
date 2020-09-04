@@ -26,14 +26,14 @@ class SuperCourseController extends AdminController
     {
         $grid = new Grid(new SuperCourse());
 
-        $grid->column('id', __('Id'));
-        $grid->column('title', __('Title'));
-        $grid->column('media', __('Media'));
-        $grid->column('maintains_id', __('Maintains id'));
-        $grid->column('open', __('Open'));
-        $grid->column('sort', __('Sort'));
-        $grid->column('created_at', __('Created at'));
-        $grid->column('updated_at', __('Updated at'));
+        //$grid->column('id', __('Id'));
+        $grid->column('title', __('课件标题'));
+        $grid->column('media', __('媒体信息'));
+        $grid->column('maintains_id', __('所属章节'));
+        $grid->column('open', __('状态'));
+        $grid->column('sort', __('排序权重'));
+        $grid->column('created_at', __('创建时间'));
+        //$grid->column('updated_at', __('Updated at'));
 
         return $grid;
     }

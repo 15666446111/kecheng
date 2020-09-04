@@ -67,6 +67,9 @@ Route::group([
     $router->resource('super-courses', SuperCourseController::class);               // 课件列表
 
 
+    $router->get('/form/{id}', ModelSetting::class);
+
+
     // 车型管理
     $router->resource('cars', CarController::class);
     

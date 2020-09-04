@@ -107,7 +107,7 @@
             var show = $(".pdf_body").css('display');
             if(show == "none") $(".pdf_body").css('display', 'block');
             var url = "{{ config('base.oss_read_path') }}"+$(this).data('url');
-            $(".pdf_iframe").attr('src', url);
+            $(".pdf_iframe").attr('src', "/js/pdf/web/viewer.html?file="+url);
             $('.pdf_body').media();
         })
     </script>

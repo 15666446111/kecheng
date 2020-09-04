@@ -10,7 +10,7 @@
     "require": {
         "php": "^7.2",
         "alibabacloud/sdk": "^1.8",
-        "encore/laravel-admin": "^1.7",
+        "encore/laravel-admin": "^1.8",
         "fideloper/proxy": "^4.0",
         "guzzlehttp/guzzle": " 6.3.*",
         "ichynul/configx": "^1.3",

@@ -26,7 +26,7 @@ body {
 	outline: 0!important
 }
 
-
+.swiper-slide-active{margin: 0!important}
 
 .weui-tab{position: none; }
 .weui-tabbar{position: fixed!important;}

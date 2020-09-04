@@ -1789,7 +1789,7 @@ var PDFViewerApplication = {
     eventBus.on('presentationmode', webViewerPresentationMode);
     eventBus.on('openfile', webViewerOpenFile);
     eventBus.on('print', webViewerPrint);
-    eventBus.on('download', webViewerDownload);
+    //eventBus.on('download', webViewerDownload);
     eventBus.on('firstpage', webViewerFirstPage);
     eventBus.on('lastpage', webViewerLastPage);
     eventBus.on('nextpage', webViewerNextPage);

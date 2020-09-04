@@ -89,7 +89,7 @@
 
         /** 轮播图。plug**/
         $(".swiper-container").swiper({
-            loop: true,
+            loop: false,
             autoplay: 3000
         });
 

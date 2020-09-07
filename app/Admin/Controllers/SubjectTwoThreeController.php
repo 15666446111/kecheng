@@ -90,16 +90,16 @@ class SubjectTwoThreeController extends AdminController
 
         $form->hidden('video_url', __('视频'));
 
-        $form->file('video', __('视频'))->required();
+        $form->text('video_url', __('视频地址'))->required()->help('阿里云点播服务的视频ID');
 
         $form->file('thumb', __('封面'))->required()->uniqueName()->move('qcby/images');
 
         $form->text('description', __('描述'))->help('此视频的简单描述');
 
-        $form->ignore(['video']);
+        //$form->ignore(['video']);
 
         // 在表单提交前调用
-        $form->submitted(function (Form $form) {
+        /*$form->submitted(function (Form $form) {
 
             $videofile          = request('video');
 
@@ -122,7 +122,7 @@ class SubjectTwoThreeController extends AdminController
 
             $form->video_url = $dataid['data'];
 
-        });
+        });*/
 
         return $form;
     }

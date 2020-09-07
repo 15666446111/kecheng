@@ -30,6 +30,8 @@ class SuperStrategy extends Model
      */
     public function maintains()
     {
-        return $this->hasMany('App\SuperMaintains', 'strategies_id', 'id')->orderBy('sort', 'asc');
+        return $this->hasMany('App\SuperCourse', 'maintains_id', 'id')->orderBy('sort', 'asc');
     }
+
+
 }

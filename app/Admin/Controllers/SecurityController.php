@@ -39,7 +39,7 @@ class SecurityController extends AdminController
 
         $grid->column('factorys', __('收藏人数'))->label();
 
-        $grid->column('sort', __('排序'))->label()->sortable();
+        $grid->column('sort', __('排序'))->label()->sortable()->editable();
         
         $grid->column('created_at', __('创建时间'));
 
@@ -92,6 +92,8 @@ class SecurityController extends AdminController
         $form->number('views', __('观看人数'))->default(1);
         $form->number('factorys', __('收藏人数'))->default(1);
 
+         $form->number('sort', __('排序权重'))->default(1);
+         
         //$form->saving(function (Form $form) {
             $form->ignore(['province']);
         //});

@@ -57,25 +57,20 @@
                 <div class="weui-cells">
                     @foreach($info->maintains as $cp)
                         @if($cp->open)
-                            <div class="col-xs-12 alert alert-success">{{ $cp->title }}</div>
-
-                            @foreach($cp->courses as $course)
-                                <div class="weui-cell sxlx_rows" style="padding-left: 1rem">
-                                    <div class="weui-cell__bd ljxx" data-url="{{ $course->media }}">
-                                        @if(in_array(substr(strrchr($course->media, '.'), 1), ['mp4', 'mp3', 'flv', 'flash']))
-                                        <i class="fa fa-video-camera" aria-hidden="true"></i>
-                                        @elseif(in_array(substr(strrchr($course->media, '.'), 1), ['csv', 'pdf', 'xls', 'xlsx']))
-                                        <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
-                                        @else
-                                        <i class="fa fa-file" aria-hidden="true"></i>
-                                        @endif
-                                        {{ $course->title }} 
-                                    </div>
-                                    <div class="weui-cell__ft ljxx" data-url="{{ $course->media }}">立即学习</div>
+                            <div class="weui-cell sxlx_rows" style="padding-left: 1rem">
+                                <div class="weui-cell__bd ljxx" data-url="{{ $cp->media }}">
+                                    @if(in_array(substr(strrchr($cp->media, '.'), 1), ['mp4', 'mp3', 'flv', 'flash']))
+                                    <i class="fa fa-video-camera" aria-hidden="true"></i>
+                                    @elseif(in_array(substr(strrchr($cp->media, '.'), 1), ['csv', 'pdf', 'xls', 'xlsx']))
+                                    <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+                                    @else
+                                    <i class="fa fa-file" aria-hidden="true"></i>
+                                    @endif
+                                    {{ $cp->title }} 
                                 </div>
-                            @endforeach
-
-                        @endif 
+                                <div class="weui-cell__ft ljxx" data-url="{{ $cp->media }}">立即学习</div>
+                            </div>
+                        @endif
                     @endforeach
                 </div>
             </div>

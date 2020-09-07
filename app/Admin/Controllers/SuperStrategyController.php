@@ -49,7 +49,6 @@ class SuperStrategyController extends AdminController
     {
         $show = new Show(SuperStrategy::findOrFail($id));
 
-        $show->field('id', __('Id'));
         $show->field('title', __('Title'));
         $show->field('thumb', __('Thumb'));
         $show->field('study_count', __('Study count'));
@@ -82,7 +81,7 @@ class SuperStrategyController extends AdminController
 
         $form->select('car_type', '车型')->options(\App\Car::pluck('title', 'id')->toArray());
 
-        $form->select('subject_id', __('科目'))->options([1=>'科目1', 4=>'科目4']);
+        $form->select('subject_id', __('科目'))->options([1=>'科目1', 2=>'科目2', 3=>'科目3', 4=>'科目4']);
 
         $form->textarea('desc', __('描述'));
 

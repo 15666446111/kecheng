@@ -29,9 +29,9 @@ class SuperCourseController extends AdminController
         //$grid->column('id', __('Id'));
         $grid->column('title', __('课件标题'));
         $grid->column('media', __('媒体信息'));
-        $grid->column('maintains_id', __('所属章节'));
-        $grid->column('open', __('状态'));
-        $grid->column('sort', __('排序权重'));
+        $grid->column('maintains.title', __('所属攻略'));
+        $grid->column('open', __('状态'))->switch();
+        $grid->column('sort', __('排序权重'))->editable();
         $grid->column('created_at', __('创建时间'));
         //$grid->column('updated_at', __('Updated at'));
 
@@ -73,7 +73,7 @@ class SuperCourseController extends AdminController
 
         $form->file('media', __('课件文件'))->uniqueName()->move('cjgl/media');
 
-        $form->select('maintains_id', __('所属章节'))->options(\App\SuperMaintains::pluck('title', 'id')->toArray());
+        $form->select('maintains_id', __('所属攻略'))->options(\App\SuperStrategy::pluck('title', 'id')->toArray());
 
         $form->switch('open', __('是否开启'))->default(1);
 

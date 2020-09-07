@@ -17,6 +17,6 @@ class SuperCourse extends Model
      */
     public function maintains()
     {
-        return $this->belongsTo('App\SuperMaintains', 'maintains_id', 'id');
+        return $this->belongsTo('App\SuperStrategy', 'maintains_id', 'id');
     }
 }

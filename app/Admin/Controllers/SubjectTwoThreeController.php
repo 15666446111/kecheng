@@ -33,10 +33,14 @@ class SubjectTwoThreeController extends AdminController
     protected function grid()
     {
         $grid = new Grid(new SubjectTwoThree());
+
         $grid->model()->latest();
+        
         $grid->column('id', __('索引'));
 
         $grid->column('title', __('标题'));
+
+        $grid->column('areas.title', __('区域'));
 
         $grid->column('subject', __('所属科目'))->using(['2' => '科目二', '3' => '科目三'])->dot([2 => 'success', 3 => 'danger'],'default');
 
@@ -83,6 +87,8 @@ class SubjectTwoThreeController extends AdminController
         $form = new Form(new SubjectTwoThree());
 
         $form->text('title', __('标题'))->required();
+
+        $form->select('area_id', __('区域'))->options(\App\SubjectTwoThreeArea::pluck('title', 'id'))->required();
 
         $form->select('subject', __('科目'))->options([2=> '科目二', 3=> '科目三'])->required();
 

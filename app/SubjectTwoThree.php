@@ -38,4 +38,18 @@ class SubjectTwoThree extends Model
     {
         return $this->belongsTo('\App\Car', 'car_id', 'id');
     }
+
+
+    /**
+     * @Author    Pudding
+     * @DateTime  2020-09-08
+     * @copyright [copyright]
+     * @license   [license]
+     * @version   [ 关联区域 ]
+     * @return    [type]      [description]
+     */
+    public function areas()
+    {
+        return $this->belongsTo('\App\SubjectTwoThreeArea', 'area_id', 'id');
+    }
 }

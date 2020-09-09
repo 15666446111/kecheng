@@ -1,5 +1,19 @@
 <div class="weui-tab">
 
+    <div class="part part1">
+        <div class="mui-row">
+            <div class="fl"></div>
+            <div class="fc"></div>
+            <div class="fr"></div>
+        </div>
+        <div class="mui-row ah">
+            <a href="/appointment">预约考试</a>
+            <a href="/super/3">超级攻略</a>
+            <a href="/appointment">成绩查询</a>
+        </div>
+    </div>
+
+
     <div class="weui-panel weui-panel_access">
         <div class="weui-panel__bd qcby">
 

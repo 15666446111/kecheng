@@ -41,7 +41,8 @@ Route::group([
     $router->resource('subject-one-fours', SubjectOneFourController::class);
     // 科目二 科目三管理
     $router->resource('subject-two-threes', SubjectTwoThreeController::class);
-
+    // 科二科三 地区列表
+    $router->resource('subject-two-three-areas', SubjectTwoThreeAreaController::class);
 
 
     /**

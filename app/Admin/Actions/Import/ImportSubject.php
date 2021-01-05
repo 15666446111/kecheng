@@ -31,50 +31,33 @@ class ImportSubject extends Action
 
                 if (count($rows) > 2) {
                     
-                    foreach ($rows[1] as $key => $col) $headings[Str::snake($col)] = $key;
+                    foreach ($rows[0] as $key => $col) $headings[Str::snake($col)] = $key;
 
                 }
 
-                //dd($headings);
-                
                 $data = [];
 
                 $i = 0;
 
                 foreach ($rows as $key => $row) 
                 {
-                    if ( $key > 1 && isset($row[$headings['题干']])){
+                    if ( $key >= 1 && isset($row[$headings['题干']])){
 
-                        $is =\App\SubjectOneFour::where('title', $row[$headings['题干']])->first();
+                        $have = \App\SubjectOneFour::whereTitle($row[10])->where('option_a', $row[12])->where('option_b', $row[13])->where('answer', $row[16])->first();
 
-                        if(!$is){
+                        //dd($row);
 
-                            $data = [
-                                'title'     =>  $row[0],
-                                'title_pic' =>  $row[1],
-                                'car'       =>  str_replace("，",",",$row[2]),
-                                'type'      =>  $row[3],
-                                'subject'   =>  $row[4],
-                                'category'  =>  0,
-                                'option_a'  =>  $row[5],
-                                'option_b'  =>  $row[6],
-                                'option_c'  =>  $row[7],
-                                'option_d'  =>  $row[8],
-                                'answer'    =>  $row[9],
-                                'analysis'  =>  $row[10],
-                                'jiqiao'    =>  $row[11],
-                                'analysis_video'    =>  $row[12],
-                                'analysis_audio'    =>  $row[13],
-                                'analysis_image'    =>  $row[14],
-                                'sort'      =>  $row[15],
-                                'open'      =>  $row[16],
-                            ];
-                            //dd($data);
-                            \App\SubjectOneFour::create($data);
-
-                            $i++;
-
+                        if($row[5] != null && $row[6] != null ){
+                            //print_r($row);
+                           \App\SixQuestion::create([
+                                'maintain_id'   =>  $row[5],
+                                'question_id'   =>  $have->id,
+                                'sort'          =>  $row[6]
+                            ]); 
                         }
+
+                        
+
                     } 
                 }
 

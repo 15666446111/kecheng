@@ -8,30 +8,29 @@ use Encore\Admin\Facades\Admin;
 use Encore\Admin\Actions\BatchAction;
 use Illuminate\Database\Eloquent\Collection;
 
-class SyncSequention extends BatchAction
+class SyncLrsx extends BatchAction
 {
-    protected $selector = '.report-posts';
+    protected $selector = '.report-posts-lrsx';
 
     public function handle(Collection $collection, Request $request)
     {
+    	if(!$request->lrsx_maintains) return $this->response()->error('请选择同步目标')->refresh();
 
-    	if(!$request->maintains) return $this->response()->error('请选择同步目标')->refresh();
+        session()->put('lrsx_exercise', $request->lrsx_exercise);
 
-        session()->put('exercise', $request->exercise);
-
-        session()->put('maintains', $request->maintains);
+        session()->put('lrsx_maintains', $request->lrsx_maintains);
 
         foreach ($collection as $model) {
            
-        	$is = \App\SequentialQuestion::where('maintain_id', $request->maintains)->where('question_id', $model->id)->exists();
+        	$is = \App\LrsxQuestion::where('maintain_id', $request->lrsx_maintains)->where('question_id', $model->id)->exists();
 
         	if(!$is){
 
-        		\App\SequentialQuestion::create([
+        		\App\LrsxQuestion::create([
 
-        			'maintain_id'	=>	$request->maintains,
+        			'maintain_id'	=>	$request->lrsx_maintains,
         			'question_id'	=>	$model->id,
-        			'sort'			=>	$request->number ?? $model->sort,
+        			'sort'			=>	$request->lrsx_number ?? $model->sort,
 
         		]);
 
@@ -53,13 +52,13 @@ class SyncSequention extends BatchAction
      */
     public function form()
 	{
-	    $this->select('exercise','地区车型')->options(\App\SequentialExercise::pluck('title','id'))->default(session::get('exercise'));
+	    $this->select('lrsx_exercise','地区车型')->options(\App\LrsxExercise::pluck('title','id'))->default(session::get('lrsx_exercise'));
 	    
-        $cc = \App\SequentialMaintain::pluck('title as text', 'id')->toArray();
+        $aa = \App\LrsxMaintain::pluck('title as text', 'id')->toArray();
+        //dd($aa);
+	    $this->select('lrsx_maintains', '章节选择')->options($aa)->default(session::get('lrsx_maintains'))->required();
 
-	    $this->select('maintains', '章节选择')->options($cc)->default(session::get('maintains'))->required();
-
-        $this->text('number', '排序权重')->default(0);
+        $this->text('lrsx_number', '排序权重')->default(0);
 	}
 
 	/**
@@ -72,7 +71,7 @@ class SyncSequention extends BatchAction
 	 */
     public function html()
     {
-        return "<a class='report-posts btn btn-sm btn-danger'><i class='fa fa-info-circle'></i>同步至顺序练习</a>";
+        return "<a class='report-posts-lrsx btn btn-sm btn-danger'><i class='fa fa-info-circle'></i>同步至懒人速学</a>";
     }
 
     /**
@@ -84,22 +83,22 @@ class SyncSequention extends BatchAction
         
         $resolve = <<<'SCRIPT'
 
-        $(".exercise").on('change',function(){
-            var exercise = $(".exercise option:selected").val();
-            if(exercise == ""){ 
-                $(".maintains").find("option").remove();
+        $(".lrsx_exercise").on('change',function(){
+            var lrsx_exercise = $(".lrsx_exercise option:selected").val();
+            if(lrsx_exercise == ""){ 
+                $(".lrsx_maintains").find("option").remove();
             }else{
                 $.ajax({
-                    url: '/getMaintains',
-                    data:{q: exercise},
+                    url: '/getMaintainsLrsx',
+                    data:{q: lrsx_exercise},
                     success:function(data){
                         var options = '';
                         $.each(data, function(i, val) {  
                             console.log(val['text'])
                             options += "<option value='"+val['id']+"'>"+val['text']+"</option>";
                         });
-                        $(".maintains").html(options);
-                        $(".maintains").change();
+                        $(".lrsx_maintains").html(options);
+                        $(".lrsx_maintains").change();
                     }
                 });
             }

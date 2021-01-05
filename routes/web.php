@@ -80,6 +80,10 @@ Route::get('/getMaintains', 	'AdminApiController@getMaintain');
 /** 后台使用 联动选择保过600题的车型与章节  **/
 Route::get('/getMaintainsSix', 	'AdminApiController@getMaintainSix');
 
+/** 后台使用 联动选择懒人速学  **/
+Route::get('/getMaintainsLrsx',  'AdminApiController@getMaintainLrsx');
+
+
 /** 设置城市和车型  **/
 Route::post('/setCity', 'SetController@setCity');
 Route::post('/setCars', 'SetController@setCars');

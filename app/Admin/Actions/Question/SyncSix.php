@@ -2,6 +2,7 @@
 
 namespace App\Admin\Actions\Question;
 
+use Session;
 use Illuminate\Http\Request;
 use Encore\Admin\Facades\Admin;
 use Encore\Admin\Actions\BatchAction;
@@ -16,6 +17,10 @@ class SyncSix extends BatchAction
 
     	if(!$request->six_maintains) return $this->response()->error('请选择同步目标')->refresh();
 
+        session()->put('six_exercise', $request->six_exercise);
+
+        session()->put('six_maintains', $request->six_maintains);
+
         foreach ($collection as $model) {
            
         	$is = \App\SixQuestion::where('maintain_id', $request->six_maintains)->where('question_id', $model->id)->exists();
@@ -26,7 +31,7 @@ class SyncSix extends BatchAction
 
         			'maintain_id'	=>	$request->six_maintains,
         			'question_id'	=>	$model->id,
-        			'sort'			=>	$model->sort,
+        			'sort'			=>	$request->number ?? $model->sort,
 
         		]);
 
@@ -48,9 +53,13 @@ class SyncSix extends BatchAction
      */
     public function form()
 	{
-	    $this->select('six_exercise','地区车型')->options(\App\SixExercise::pluck('title','id'));
+	    $this->select('six_exercise','地区车型')->options(\App\SixExercise::pluck('title','id'))->default(session::get('six_exercise'));
 	    
-	    $this->select('six_maintains', '章节选择')->required() ;
+        $dd = \App\SixMaintain::pluck('title as text', 'id')->toArray();
+
+	    $this->select('six_maintains', '章节选择')->options($dd)->default(session::get('six_maintains'))->required();
+
+        $this->text('number', '排序权重')->default(0);
 	}
 
 	/**

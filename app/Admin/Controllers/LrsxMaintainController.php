@@ -2,20 +2,20 @@
 
 namespace App\Admin\Controllers;
 
-use App\SixMaintain;
+use App\LrsxMaintain;
 use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Show;
 
-class SixMaintainController extends AdminController
+class LrsxMaintainController extends AdminController
 {
     /**
      * Title for current resource.
      *
      * @var string
      */
-    protected $title = '章节列表';
+    protected $title = '懒人速学 - 章节列表';
 
     /**
      * Make a grid builder.
@@ -24,7 +24,7 @@ class SixMaintainController extends AdminController
      */
     protected function grid()
     {
-        $grid = new Grid(new SixMaintain());
+        $grid = new Grid(new LrsxMaintain());
 
         $grid->column('id', __('索引'));
         
@@ -51,7 +51,7 @@ class SixMaintainController extends AdminController
      */
     protected function detail($id)
     {
-        $show = new Show(SixMaintain::findOrFail($id));
+        $show = new Show(LrsxMaintain::findOrFail($id));
 
         $show->field('title', __('章节标题'));
 
@@ -68,7 +68,7 @@ class SixMaintainController extends AdminController
 
         $show->questions('题目列表', function ($questions) {
 
-            $questions->resource('/admin/lrsx-questions');
+            $questions->resource('/admin/sequential-questions');
 
             $questions->id('索引');
 
@@ -93,11 +93,11 @@ class SixMaintainController extends AdminController
      */
     protected function form()
     {
-        $form = new Form(new SixMaintain());
+        $form = new Form(new LrsxMaintain());
 
         $form->text('title', __('章节标题'));
 
-        $form->select('exercise_id', __('顺序练习'))->options(\App\SixExercise::pluck('title', 'id')->toArray());
+        $form->select('exercise_id', __('地区车型'))->options(\App\LrsxExercise::pluck('title', 'id')->toArray());
 
         $form->switch('open', __('状态'))->default(1);
 

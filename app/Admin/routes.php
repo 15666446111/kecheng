@@ -61,6 +61,14 @@ Route::group([
 
 
     /**
+     * 懒人速学
+     */
+    $router->resource('lrsx-exercises', LrsxExerciseController::class);
+    $router->resource('lrsx-maintains', LrsxMaintainController::class);
+    $router->resource('lrsx-questions', LrsxQuestionController::class);
+
+    
+    /**
      * 超级攻略
      */
     $router->resource('super-strategies', SuperStrategyController::class);          // 超级攻略

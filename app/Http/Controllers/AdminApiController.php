@@ -36,4 +36,10 @@ class AdminApiController extends Controller
     {
         return \App\SixMaintain::where('exercise_id', $request->get('q'))->get(['id', 'title as text'])->toArray();
     }
+
+    /** 后台联动选择懒人速学的车型与章节**/
+    public function getMaintainLrsx(Request $request)
+    {
+        return \App\LrsxMaintain::where('exercise_id', $request->get('q'))->get(['id', 'title as text'])->toArray();
+    }
 }

@@ -94,6 +94,15 @@ class SubjectOneFourController extends AdminController
             });
 
             $filter->column(1/4, function ($filter) {
+                $filter->where(function ($query) {
+                    $query->where('option_a', 'like', "%{$this->input}%")
+                        ->orWhere('option_b', 'like', "%{$this->input}%")
+                        ->orWhere('option_c', 'like', "%{$this->input}%")
+                        ->orWhere('option_d', 'like', "%{$this->input}%");
+                }, '选项');
+            });
+
+            $filter->column(1/4, function ($filter) {
                 $filter->like('car', '车型')->select(\App\Car::pluck('title', 'id')->toArray());
             });
 

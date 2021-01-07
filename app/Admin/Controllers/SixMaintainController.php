@@ -68,7 +68,7 @@ class SixMaintainController extends AdminController
 
         $show->questions('题目列表', function ($questions) {
 
-            $questions->resource('/admin/lrsx-questions');
+            $questions->resource('/admin/six-questions');
 
             $questions->id('索引');
 

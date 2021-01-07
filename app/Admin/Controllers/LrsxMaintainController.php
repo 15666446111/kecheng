@@ -68,7 +68,7 @@ class LrsxMaintainController extends AdminController
 
         $show->questions('题目列表', function ($questions) {
 
-            $questions->resource('/admin/sequential-questions');
+            $questions->resource('/admin/lrsx-questions');
 
             $questions->id('索引');
 

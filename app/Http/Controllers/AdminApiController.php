@@ -42,4 +42,10 @@ class AdminApiController extends Controller
     {
         return \App\LrsxMaintain::where('exercise_id', $request->get('q'))->get(['id', 'title as text'])->toArray();
     }
+
+     /** 后台联动选择三力测试的车型与章节**/
+    public function getMaintainSanli(Request $request)
+    {
+        return \App\SanliMaintain::where('exercise_id', $request->get('q'))->get(['id', 'title as text'])->toArray();
+    }
 }

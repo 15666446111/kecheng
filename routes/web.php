@@ -83,6 +83,10 @@ Route::get('/getMaintainsSix', 	'AdminApiController@getMaintainSix');
 /** 后台使用 联动选择懒人速学  **/
 Route::get('/getMaintainsLrsx',  'AdminApiController@getMaintainLrsx');
 
+/** 后台使用 联动选择三力测试  **/
+Route::get('/getMaintainsSan',  'AdminApiController@getMaintainSanli');
+
+
 
 /** 设置城市和车型  **/
 Route::post('/setCity', 'SetController@setCity');

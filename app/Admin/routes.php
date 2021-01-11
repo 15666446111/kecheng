@@ -69,6 +69,15 @@ Route::group([
 
     
     /**
+     * 三力测试
+     */
+    $router->resource('sanli-exercises', SanliExerciseController::class);
+    $router->resource('sanli-maintains', SanliMaintainController::class);
+    $router->resource('sanli-questions', SanliQuestionController::class);
+
+
+    
+    /**
      * 超级攻略
      */
     $router->resource('super-strategies', SuperStrategyController::class);          // 超级攻略

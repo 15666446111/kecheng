@@ -15,6 +15,9 @@ use App\Admin\Actions\Import\ImportSubject;         // 导入题库
 use App\Admin\Actions\Question\SyncSequention;      // 同步顺序练习
 use App\Admin\Actions\Question\SyncSix;             // 同步至保过600题
 use App\Admin\Actions\Question\SyncLrsx;            // 同步至懒人速学
+use App\Admin\Actions\Question\SyncSanli;            // 同步至三力测试
+use App\Admin\Actions\Question\SyncSecret;           // 同步至考前密卷一
+use App\Admin\Actions\Question\SyncSecret2;           // 同步至考前密卷二
 
 use App\Admin\Actions\Change\ChangeCars;            // 更新车型
 use App\Admin\Actions\Change\ChangeSub;             // 更新科目
@@ -78,6 +81,12 @@ class SubjectOneFourController extends AdminController
             $tools->append(new SyncSequention()); // 更新顺序练习
             $tools->append(new SyncSix());      // 保过600题
             $tools->append(new SyncLrsx());     // 懒人速学
+            $tools->append(new SyncSanli());     // 三力测试
+            $tools->append(new SyncSecret());     // 考前密卷
+            $tools->append(new SyncSecret2());     // 考前密卷2
+
+            
+
 
 
             $tools->append(new ChangeCars());   // 更新车型
@@ -163,7 +172,7 @@ class SubjectOneFourController extends AdminController
 
         $form->text('title', __('题干'));
 
-        $form->image('title_pic', __('题干图片'))->move('subject14/images')->uniqueName();
+        $form->text('title_pic', __('题干图片'));
 
         $form->checkbox('car', __('车型'))->options(\App\Car::pluck('title', 'id'));
 

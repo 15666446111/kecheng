@@ -86,6 +86,11 @@ Route::get('/getMaintainsLrsx',  'AdminApiController@getMaintainLrsx');
 /** 后台使用 联动选择三力测试  **/
 Route::get('/getMaintainsSan',  'AdminApiController@getMaintainSanli');
 
+/** 后台使用 联动选择考前密卷一  **/
+Route::get('/getMaintainsSecret',  'AdminApiController@getMaintainSecret');
+
+/** 后台使用 联动选择考前密卷二  **/
+Route::get('/getMaintainsSecret2',  'AdminApiController@getMaintainSecret2');
 
 
 /** 设置城市和车型  **/

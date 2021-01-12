@@ -76,6 +76,21 @@ Route::group([
     $router->resource('sanli-questions', SanliQuestionController::class);
 
 
+    /**
+     * 考前密卷
+     */
+    $router->resource('secret-exercises', SecretExerciseController::class);
+    $router->resource('secret-maintains', SecretMaintainController::class);
+    $router->resource('secret-questions', SecretQuestionController::class);
+
+
+    /**
+     * 考前密卷二
+     */
+    $router->resource('secret2-exercises', Secret2ExerciseController::class);
+    $router->resource('secret2-maintains', Secret2MaintainController::class);
+    $router->resource('secret2-questions', Secret2QuestionController::class);
+
     
     /**
      * 超级攻略

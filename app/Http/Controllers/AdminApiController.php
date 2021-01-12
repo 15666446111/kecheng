@@ -48,4 +48,16 @@ class AdminApiController extends Controller
     {
         return \App\SanliMaintain::where('exercise_id', $request->get('q'))->get(['id', 'title as text'])->toArray();
     }
+
+    /** 后台联动选择考前密卷一的车型与章节 */  
+    public function getMaintainSecret(Request $request)
+    {
+        return \App\SecretMaintain::where('exercise_id', $request->get('q'))->get(['id', 'title as text'])->toArray();
+    }
+
+    /** 后台联动选择考前密卷二的车型与章节 */  
+    public function getMaintainSecret2(Request $request)
+    {
+        return \App\Secret2Maintain::where('exercise_id', $request->get('q'))->get(['id', 'title as text'])->toArray();
+    }
 }

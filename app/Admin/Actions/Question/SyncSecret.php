@@ -8,28 +8,28 @@ use Encore\Admin\Facades\Admin;
 use Encore\Admin\Actions\BatchAction;
 use Illuminate\Database\Eloquent\Collection;
 
-class SyncSanli extends BatchAction
+class SyncSecret extends BatchAction
 {
-    protected $selector = '.report-posts-sanli';
+    protected $selector = '.report-posts-secret';
 
     public function handle(Collection $collection, Request $request)
     {
 
-    	if(!$request->san_maintains) return $this->response()->error('请选择同步目标')->refresh();
+    	if(!$request->secret_maintains) return $this->response()->error('请选择同步目标')->refresh();
 
-        session()->put('san_exercise', $request->san_exercise);
+        session()->put('secret_exercise', $request->secret_exercise);
 
-        session()->put('san_maintains', $request->san_maintains);
+        session()->put('secret_maintains', $request->secret_maintains);
 
         foreach ($collection as $model) {
            
-        	$is = \App\SanQuestion::where('maintain_id', $request->san_maintains)->where('question_id', $model->id)->exists();
+        	$is = \App\SecretQuestion::where('maintain_id', $request->secret_maintains)->where('question_id', $model->id)->exists();
 
         	if(!$is){
 
-        		\App\SanQuestion::create([
+        		\App\SecretQuestion::create([
 
-        			'maintain_id'	=>	$request->san_maintains,
+        			'maintain_id'	=>	$request->secret_maintains,
         			'question_id'	=>	$model->id,
         			'sort'			=>	$request->number ?? $model->sort,
 
@@ -53,11 +53,11 @@ class SyncSanli extends BatchAction
      */
     public function form()
 	{
-	    $this->select('san_exercise','地区车型')->options(\App\SanliExercise::pluck('title','id'))->default(session::get('san_exercise'));
+	    $this->select('secret_exercise','地区车型')->options(\App\SecretExercise::pluck('title','id'))->default(session::get('secret_exercise'));
 	    
-        $dd = \App\SanliMaintain::pluck('title as text', 'id')->toArray();
+        $dd = \App\SecretMaintain::pluck('title as text', 'id')->toArray();
 
-	    $this->select('san_maintains', '章节选择')->options($dd)->default(session::get('san_maintains'))->required();
+	    $this->select('secret_maintains', '章节选择')->options($dd)->default(session::get('secret_maintains'))->required();
 
         $this->text('number', '排序权重')->default(0);
 	}
@@ -72,7 +72,7 @@ class SyncSanli extends BatchAction
 	 */
     public function html()
     {
-        return "<a class='report-posts-sanli btn btn-sm btn-danger'><i class='fa fa-info-circle'></i>同步至三力测试</a>";
+        return "<a class='report-posts-secret btn btn-sm btn-danger'><i class='fa fa-info-circle'></i>同步至考前密卷一</a>";
     }
 
     /**
@@ -84,21 +84,21 @@ class SyncSanli extends BatchAction
         
         $resolve = <<<'SCRIPT'
 
-        $(".san_exercise").on('change',function(){
-            var san_exercise = $(".san_exercise option:selected").val();
-            if(san_exercise == ""){ 
-                $(".san_maintains").find("option").remove();
+        $(".secret_exercise").on('change',function(){
+            var secret_exercise = $(".secret_exercise option:selected").val();
+            if(secret_exercise == ""){ 
+                $(".secret_maintains").find("option").remove();
             }else{
                 $.ajax({
-                    url: '/getMaintainsSan',
-                    data:{q: san_exercise},
+                    url: '/getMaintainsSecret',
+                    data:{q: secret_exercise},
                     success:function(data){
                         var options = '';
                         $.each(data, function(i, val) {
                             options += "<option value='"+val['id']+"'>"+val['text']+"</option>";
                         });
-                        $(".san_maintains").html(options);
-                        $(".san_maintains").change();
+                        $(".secret_maintains").html(options);
+                        $(".secret_maintains").change();
                     }
                 });
             }

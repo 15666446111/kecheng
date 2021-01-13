@@ -95,10 +95,13 @@ class SanliMaintainController extends AdminController
     {
         $form = new Form(new SanliMaintain());
 
-        $form->text('title', __('Title'));
-        $form->number('exercise_id', __('Exercise id'))->default(1);
-        $form->switch('open', __('Open'))->default(1);
-        $form->number('sort', __('Sort'));
+        $form->text('title', __('章节标题'));
+
+        $form->select('exercise_id', __('地区车型'))->options(\App\LrsxExercise::pluck('title', 'id')->toArray());
+
+        $form->switch('open', __('状态'))->default(1);
+
+        $form->number('sort', __('排序权重'))->default(0);
 
         return $form;
     }

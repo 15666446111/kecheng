@@ -73,14 +73,25 @@ class SanliExerciseController extends AdminController
     {
         $form = new Form(new SanliExercise());
 
-        $form->text('title', __('Title'));
-        $form->text('thumb', __('Thumb'));
-        $form->number('study_count', __('Study count'));
-        $form->number('favouer_count', __('Favouer count'));
-        $form->number('area', __('Area'));
-        $form->number('car_type', __('Car type'));
-        $form->number('subject_id', __('Subject id'))->default(1);
-        $form->textarea('desc', __('Desc'));
+        $form->text('title', __('练习标题'));
+
+        $form->file('thumb', __('封面图片'))->required()->uniqueName()->move('sxlx/images');
+
+        $form->number('study_count', __('学习次数'))->default(0);
+
+        $form->number('favouer_count', __('收藏次数'))->default(0);
+
+        $form->select('provinces', __('省份'))->options(\App\Province::pluck('name', 'id')->toArray())->load('area', '/api/city');
+
+        $form->select('area', __('城市'));
+
+        $form->select('car_type', '车型')->options(\App\Car::pluck('title', 'id')->toArray());
+
+        $form->select('subject_id', __('科目'))->options([1=>'科目1', 4=>'科目4']);
+
+        $form->textarea('desc', __('描述'));
+
+        $form->ignore('provinces');
 
         return $form;
     }

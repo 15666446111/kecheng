@@ -97,7 +97,7 @@ class SecretMaintainController extends AdminController
 
         $form->text('title', __('章节标题'));
 
-        $form->select('exercise_id', __('地区车型'))->options(\App\LrsxExercise::pluck('title', 'id')->toArray());
+        $form->select('exercise_id', __('地区车型'))->options(\App\SecretExercise::pluck('title', 'id')->toArray());
 
         $form->switch('open', __('状态'))->default(1);
 

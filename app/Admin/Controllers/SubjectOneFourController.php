@@ -3,24 +3,15 @@
 namespace App\Admin\Controllers;
 
 use App\SubjectOneFour;
-use Encore\Admin\Controllers\AdminController;
-use Encore\Admin\Form;
-use Encore\Admin\Grid;
-use Encore\Admin\Show;
-
 use Encore\Admin\Widgets\Table;
+use Encore\Admin\{Grid, Show, Form};
+use Encore\Admin\Controllers\AdminController;
+use App\Admin\Actions\Change\{ChangeCars, ChangeSub};            // 更新车型
+use App\Admin\Actions\Import\{ImportSubject, ImportAreaSubject};         // 导入基本题库
+use App\Admin\Actions\Question\{SyncSequention, SyncSix, SyncLrsx, SyncSanli, SyncSecret, SyncSecret2};      // 同步顺序练习
 
-use App\Admin\Actions\Import\ImportSubject;         // 导入题库
 
-use App\Admin\Actions\Question\SyncSequention;      // 同步顺序练习
-use App\Admin\Actions\Question\SyncSix;             // 同步至保过600题
-use App\Admin\Actions\Question\SyncLrsx;            // 同步至懒人速学
-use App\Admin\Actions\Question\SyncSanli;            // 同步至三力测试
-use App\Admin\Actions\Question\SyncSecret;           // 同步至考前密卷一
-use App\Admin\Actions\Question\SyncSecret2;           // 同步至考前密卷二
 
-use App\Admin\Actions\Change\ChangeCars;            // 更新车型
-use App\Admin\Actions\Change\ChangeSub;             // 更新科目
 class SubjectOneFourController extends AdminController
 {
     /**
@@ -38,12 +29,12 @@ class SubjectOneFourController extends AdminController
     protected function grid()
     {
         $grid = new Grid(new SubjectOneFour());
+
         $grid->model()->latest();
-        $grid->column('id', __('索引'))->sortable();
         
         $grid->column('title', __('题干'))->display(function ($title) {
             return strip_tags($title);
-        })->limit(30)->help('这一列是问题的题干');
+        })->limit(10)->help('这一列是问题的题干');
 
         $grid->column('car', __('车型'))->display(function($tags) {
             $tags = \App\Car::whereIn('id', $tags)->pluck('title')->toArray();
@@ -69,14 +60,20 @@ class SubjectOneFourController extends AdminController
         $grid->column('analysis', __('解析'))->limit(30);
         $grid->column('jiqiao', __('技巧'))->limit(30);
 
-        $grid->column('sort', __('排序'))->label()->sortable();
+        $grid->column('analysis_video', __('视频解析'))->video(['videoWidth' => 720, 'videoHeight' => 480]);
+
+        $grid->column('sort', __('排序'))->sortable();
+
         $grid->column('open', __('状态'))->switch();
         $grid->column('created_at', __('创建时间'));
 
 
         $grid->tools(function (Grid\Tools $tools) {
 
-            $tools->append(new ImportSubject());    // 导入题库
+            $tools->append(new ImportSubject());        // 导入基本题库
+            $tools->append(new ImportAreaSubject());    // 导入地方题
+
+
 
             $tools->append(new SyncSequention()); // 更新顺序练习
             $tools->append(new SyncSix());      // 保过600题

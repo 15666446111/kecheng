@@ -32,6 +32,10 @@ Route::middleware(['checkLogin', 'beforeInit'])->group(function () {
 
 
 	Route::get('/sequence/plain/{sub}', 	'PlainController@subject');					// 科目一四 顺序练习 详情页面
+
+
+
+	
 	Route::get('/sequence/practice/{id}', 	'PlainController@practice');				// 科目一四 顺序练习 总练习
 	Route::get('/sequence/chapter/{id}', 	'PlainController@subject');					// 科目一四 顺序练习 总练习
 

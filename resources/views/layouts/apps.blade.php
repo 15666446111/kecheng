@@ -13,8 +13,10 @@
     
     <title>{{ config('app.name', 'Laravel') }} - @yield('title')</title>
 
-     <link rel="stylesheet" href="{{ mix('css/app.css') }}?t={{ time() }}">
+    <link rel="stylesheet" href="{{ mix('css/app.css') }}?t={{ time() }}">
 
+	<link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+	
 	@yield('css')
 
 </head>
@@ -24,19 +26,9 @@
 
 	@yield('content')
 
-
-	<script type="text/javascript" src="{{ mix('js/app.js') }}?t={{ time() }}"></script>
-	<script type="text/javascript">
-		$(".lang").click(function(){
-			$.ajaxSetup({headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}});
-            $.post( "{{ route('lang')}}", { lang: $(this).data('lang') },  function(d){
-                    if(d) location.reload(); //重新刷新页面  
-                }
-            );
-		})
-	</script>
-	
 	<script src="https://cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script>
+	<script type="text/javascript" src="{{ mix('js/app.js') }}?t={{ time() }}"></script>
+
 	@yield('scripts')
 </body>
 

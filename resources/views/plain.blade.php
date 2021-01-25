@@ -1,83 +1,88 @@
-@extends('layouts.app')
+@extends('layouts.apps')
 
 @section('title')
-{{ $title }}
+顺序练习
 @endsection
 
 
 @section('content')
-<div class="weui-tab sxlx_con">
+<header>
+    <i class="fa fa-chevron-left"></i> 
+    <span>机动车驾驶相关知识练习题</span>
+</header>
 
-    @include('layouts.header')
 
-    <div style="background: #ebeef5; width: 100%; height: .5rem"></div>
+<div class="content">
+    <div class="ques-title">
+        <span class="radio">单选</span>在实习期内驾驶机动车的，应当在车身后部粘贴或者悬挂哪种标志？
+    </div>
 
-    <div class="container">
+    <div class="ques-pic">
+        <img src="https://kecheng-jsyghw.oss-cn-beijing.aliyuncs.com/subject14/images/subject1/app5-shigujiuhu/31-jiexi.jpg">
+    </div>
 
-        <div class="col-xs-12">
-            <img src="{{ config('base.oss_read_path') . $info->thumb}}" class="img-responsive img-da">
+    <div class="ques-options">
+        <ul>
+            <li><span>A</span>违规行为</li>
+            <li><span>B</span>违章行为</li>
+            <li><span>C</span>违法行为</li>
+            <li><span>D</span>犯罪行为</li>
+        </ul>
+    </div>
+
+
+    <div class="fg"></div>
+
+    <div class="jiexi-title">
+        <h3>答案解析</h3>
+    </div>
+
+    <div class="jiexi-video">
+        <div class="jiexi-video-title">视频解析</div>
+        <div class="jiexi-video-text">
+                <audio id="mp3Btn" controls="controls" class="btn-audio" controlsList="nodownload">
+                    <source src="https://kecheng-jsyghw.oss-cn-beijing.aliyuncs.com/subject14/sounds/subject1-voice/qianghua6/5-6.mp3" type="audio/mp3" />
+                    <source src="song.ogg" type="audio/ogg" />
+                    Your browser does not support this audio format.
+                </audio>
         </div>
+    </div>
 
-        <div class="col-xs-12">
-            <div class="pagetitle">
-                <h2>{{ $info->title }}</h2>
-                <div class="w33"><i class="fa fa-video-camera"></i><span>{{ $info->study_count }}</span>次学习</div>
-                <div class="w33"><i class="fa fa-heart-o"></i><span>{{ $info->favouer_count }}</span>次收藏</div>
+    <div class="jiexi-line"></div>
+
+    <div class="jiexi-audio">
+        <div class="jiexi-audio-title">音频解析</div>
+        <div class="jiexi-audio-text">
+            <audio id="mp3Btn" controls="controls" class="btn-audio" controlsList="nodownload">
+                <source src="https://kecheng-jsyghw.oss-cn-beijing.aliyuncs.com/subject14/sounds/subject1-voice/qianghua6/5-6.mp3" type="audio/mp3" />
+                <source src="song.ogg" type="audio/ogg" />
+                Your browser does not support this audio format.
+            </audio>
+        </div>
+    </div>
+
+    <div class="jiexi-line"></div>
+
+    <div class="jiexi-jiqiao">
+        <div class="jiexi-audio">
+            <div class="jiexi-audio-title">题目解析</div>
+            <div class="jiexi-jiqiao-text">
+                《道路安全交通法》第九十六条伪造、变造或者使用伪造、变造的机动车登记证书、号牌、行驶证、检验合格标志、保险标志、驾驶证或者使用其他车辆的机动车登记证书、号牌、行驶证、检验合格标志、保险标志的，由公安机关交通管理部门予以收缴，扣留该机动车，并处二百元以上二千元以下罚款;构成犯罪的，依法追究刑事责任。
             </div>
-        </div>  
-
-        <div class="col-xs-12 price">
-            <span class="red"><b>￥</b>免费</span>
-            <span class="buy-now">
-                <a href="/sequence/practice/{{ $info->id }}">开始学习</a> 
-            </span>
-        </div>
+        </div>   
     </div>
-
-    <div style="background: #ebeef5; width: 100%; height: .5rem"></div>
-
-    <div class="weui-tab">
-
-    <div class="weui-navbar">
-        <div class="weui-navbar__item weui_bar__item_on weui-bar__item--on" data="#tab1">
-            课程目录
-        </div>
-        <div class="weui-navbar__item" data="#tab2">
-            课程说明
-        </div>
-        <div class="weui-navbar__item" data="#tab3">
-            学员评价
-        </div>
-    </div>
-
-    <div class="weui-tab__bd" style="padding-top: 0">
-        <div id="tab1" class="weui-tab__bd-item weui-tab__bd-item--active">
-            <div class="weui-cells">
-                @foreach($info->maintains as $cp)
-                    @if($cp->open)
-                        <div class="weui-cell sxlx_rows">
-                            <div class="weui-cell__bd sxlx"> {{ $cp->title }} </div>
-                            <div class="weui-cell__ft ljxx">立即学习</div>
-                        </div>
-                    @endif 
-                @endforeach
-            </div>
-        </div>
-        <div id="tab2" class="weui-tab__bd-item">
-            {{ $info->desc }}
-        </div>
-        <div id="tab3" class="weui-tab__bd-item">
-            <h4> 学员评价 </h4>
-        </div>
-    </div>
-
-    </div>
-
-
-
-    @include('layouts.foot_nav', ['nav' => 'home'])
-
 </div>
+
+
+
+<footer>
+    <ul>
+        <li><i class="fa fa-chevron-left"></i> 上一题</li>
+        <li class="fa-s"><i class="fa fa-star-o"></i> <br/> 收藏</li>
+        <li class="fa-s"><i class="fa fa-th-large"></i> <br/>23/467</li>
+        <li>下一题 <i class="fa fa-chevron-right"></i></li>
+    </ul>
+</footer>
 @endsection
 
 

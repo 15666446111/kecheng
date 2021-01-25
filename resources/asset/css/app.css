@@ -1,4 +1,117 @@
+@font-face{
+	font-family: "pingfang-c"; src: url('/fonts/family.ttf'); font-style: normal; font-weight: normal;
+}
+
 *{
-	margin: 0;
-	padding: 0;
+	margin: 0; padding: 0; font-family: 'pingfang-c';
+}
+
+header{
+	width:96%; height: 44pt; border-bottom: 1pt solid #E0E2E1; line-height: 44pt; padding-left: 4%
+}
+
+header i{
+	font-size: 15pt;
+}
+
+header span	{
+	font-size: 14pt; margin-left: 10px; font-weight: normal;
+}
+
+
+
+footer {
+	width: 100%; height: 47.5pt; border-top: 1px solid #E0E2E1; position: fixed; bottom: 0; z-index: 99999;
+}
+
+footer ul{
+	width: 100%; height: 100%;
+}
+
+footer ul li{
+	float: left; width: 25%; height: 100%; list-style: none; line-height: 47.5pt; text-align: center; font-size: 10pt; color: #6E7371;
+}
+
+footer ul .fa-s{
+	line-height: 15pt; padding-top: 10pt
+}
+
+.content{
+	width: 100%; height: auto; padding-bottom: 100px;
+}
+
+.ques-title{
+	width: 94%; height: auto; padding-top: 15px; padding-left: 3%; padding-right: 3%; line-height: 30px;
+}
+
+.ques-title .radio{padding: 3px 7px; border-radius: 3px; background-color: #2DC294; color: white; font-size: 9pt; margin-right: 5px;}
+
+
+.ques-pic{
+	width: 94%; height: auto; padding-top: 5px; padding-left: 3%; padding-right: 3%;
+}
+
+.ques-pic img{
+	width: 100%; height: 100%
+}
+
+.ques-options{
+	width: 94%; height: auto; padding-top: 5px; padding-left: 3%; padding-right: 3%;
+}
+
+.ques-options ul{
+	width: 100%;
+}
+
+.ques-options ul li{
+	width: 100%; height: 50px; line-height: 50px;  font-size: 12pt;
+}
+
+.ques-options ul li span{
+	padding: 5px 10px; border-radius: 50%; background-color: #fff; border:1px solid #E0E2E1; margin-right: 5px; font-size: 10pt;
+}
+
+
+.fg{
+	width: 100%; height: 10pt; background-color: #F5F5F5;
+}
+
+.jiexi-title{
+	width: 100%; height: 20pt; width: 100%; text-align: center; margin-bottom: 20px;
+}
+
+.jiexi-title h3{
+	font-size: 13pt; height: 40px; line-height: 40px;
+}
+
+.jiexi-line{
+	width: 94%; height: 1px; background-color: #E0E2E1; margin-top: 15px; margin: 20px auto;
+}
+
+.jiexi-audio-title{
+	width: 91%; margin-left: 3%; margin-right: 3%;  height: 20px; border-left: 3px solid #2DC294; font-size: 12pt; padding-left: 3%;
+}
+
+.jiexi-audio-text, .jiexi-video-text{
+	width: 94%; margin-left: 3%; margin-right: 3%; height: 40px; margin-top: 10px; 
+}
+
+.btn-audio{
+    width: 100%; border-radius: 10px; height: 40px; 
+} 
+
+.jiexi-video-title{
+	width: 91%; margin-left: 3%; margin-right: 3%;  height: 20px; border-left: 3px solid #2DC294; font-size: 12pt; padding-left: 3%;
+}
+
+.jiexi-audio-text{
+	width: 94%; margin-left: 3%; margin-right: 3%; height: 40px; margin-top: 10px; 
+}
+
+.btn-audio{
+    width: 100%; border-radius: 10px; height: 40px; 
+} 
+
+.jiexi-jiqiao-text{
+	width: 94%; height: auto; margin: 3% auto; line-height: 25px; font-size: 11pt; color: #1E2421; text-indent: 2em;
 }
